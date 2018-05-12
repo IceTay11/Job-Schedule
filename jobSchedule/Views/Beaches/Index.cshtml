@@ -1,0 +1,39 @@
+﻿@model IEnumerable<jobSchedule.Models.Beach>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.city.city_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.beachName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.city.city_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.beachName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.beachID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.beachID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.beachID })
+        </td>
+    </tr>
+}
+
+</table>

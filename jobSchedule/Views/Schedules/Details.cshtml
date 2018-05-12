@@ -1,0 +1,50 @@
+﻿@model jobSchedule.Models.Schedule
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Schedule</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.beach.beachName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.beach.beachName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city.city_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city.city_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dutyStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dutyStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dutyEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dutyEnd)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.scheduleID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

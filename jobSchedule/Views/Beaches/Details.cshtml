@@ -1,0 +1,34 @@
+﻿@model jobSchedule.Models.Beach
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Beach</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.city.city_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city.city_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.beachName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.beachName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.beachID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,60 @@
+﻿@model jobSchedule.Models.City
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>City</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.city_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.city_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.city_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.province, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.province, 
+                    new List<SelectListItem>
+                    {
+                    new SelectListItem { Value = "Kwa-Zulu Natal" , Text = "Kwa-Zulu Natal" },
+                    new SelectListItem { Value = "Gauteng" , Text = "Gauteng" },
+                    new SelectListItem { Value = "Free State" , Text = "Free State" },
+                    new SelectListItem { Value = "Mpumalanga" , Text = "Mpumalanga" },
+                    new SelectListItem { Value = "Northern Cape" , Text = "Northern Cape" },
+                    new SelectListItem { Value = "Western Cape" , Text = "Western Cape" },
+                    new SelectListItem { Value = "Eastern Cape" , Text = "Eastern Cape" },
+                    new SelectListItem { Value = "Limpopo" , Text = "Limpopo" },
+                    new SelectListItem { Value = "North West" , Text = "North West" }
+                    } )
+                    @Html.ValidationMessageFor(model => model.province, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
