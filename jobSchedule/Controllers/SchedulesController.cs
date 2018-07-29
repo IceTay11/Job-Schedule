@@ -17,7 +17,7 @@ namespace jobSchedule.Controllers
         // GET: Schedules
         public ActionResult Index()
         {
-            var schedules = db.Schedules.Include(s => s.beach).Include(s => s.city);
+            var schedules = db.Schedules.Include(s => s.beach).Include(f =>f.lifeguard).Include(x=>x.city);
             return View(schedules.ToList());
         }
 
@@ -39,9 +39,18 @@ namespace jobSchedule.Controllers
         // GET: Schedules/Create
         public ActionResult Create()
         {
-            ViewBag.beachID = new SelectList(db.Beaches, "beachID", "beachName");
+            //ViewBag.beachID = new SelectList(db.Beaches, "beachID", "beachName");
             ViewBag.city_id = new SelectList(db.Cities, "city_id", "city_name");
+            ViewBag.lifeguardID = new SelectList(db.Lifeguards, "lifeguardID", "Lifeguard_Name");
             return View();
+        }
+
+
+        public ActionResult Citycal(int city_id)
+        {
+            db.Configuration.ProxyCreationEnabled = true;
+            List<Beach> beachy = db.Beaches.Where(x => x.city_id == city_id).ToList();
+            return Json(beachy, JsonRequestBehavior.AllowGet);     
         }
 
         // POST: Schedules/Create
@@ -49,15 +58,28 @@ namespace jobSchedule.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "scheduleID,dutyStart,dutyEnd,city_id,beachID")] Schedule schedule)
+        public ActionResult Create([Bind(Include = "scheduleID,lifeguardID,dutyDate,timeStart,timeEnd,city_id,beachID,city_name")] Schedule schedule)
         {
+            var lg = db.Lifeguards.Find(schedule.lifeguardID);
+
             if (ModelState.IsValid)
             {
-                db.Schedules.Add(schedule);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (lg.city_id == schedule.city_id)
+                {
+
+                    db.Schedules.Add(schedule);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+
+                else
+                {
+                    ViewBag.tay = "The selected lifeguard does not stay in the same city";
+                }
             }
 
+            ViewBag.lifeguardID = new SelectList(db.Lifeguards, "lifeguardID", "Lifeguard_Name", schedule.lifeguardID);
             ViewBag.beachID = new SelectList(db.Beaches, "beachID", "beachName", schedule.beachID);
             ViewBag.city_id = new SelectList(db.Cities, "city_id", "city_name", schedule.city_id);
             return View(schedule);
@@ -75,6 +97,8 @@ namespace jobSchedule.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.lifeguardID = new SelectList(db.Lifeguards, "lifeguardID", "Lifeguard_Name", schedule.lifeguardID);
             ViewBag.beachID = new SelectList(db.Beaches, "beachID", "beachName", schedule.beachID);
             ViewBag.city_id = new SelectList(db.Cities, "city_id", "city_name", schedule.city_id);
             return View(schedule);
@@ -85,7 +109,7 @@ namespace jobSchedule.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "scheduleID,dutyStart,dutyEnd,city_id,beachID")] Schedule schedule)
+        public ActionResult Edit([Bind(Include = "scheduleID,lifeguardID,dutyDate,timeStart,timeEnd,city_id,beachID,city_name")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
@@ -93,6 +117,7 @@ namespace jobSchedule.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.lifeguardID = new SelectList(db.Lifeguards, "lifeguardID", "Lifeguard_Name", schedule.lifeguardID);
             ViewBag.beachID = new SelectList(db.Beaches, "beachID", "beachName", schedule.beachID);
             ViewBag.city_id = new SelectList(db.Cities, "city_id", "city_name", schedule.city_id);
             return View(schedule);

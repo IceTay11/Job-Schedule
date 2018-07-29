@@ -68,7 +68,8 @@ namespace jobSchedule.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lifeguard lifeguard = db.Lifeguards.Find(id);
+            Lifeguard lifeguard = db.Lifeguards.Find(id);        
+
             if (lifeguard == null)
             {
                 return HttpNotFound();
@@ -84,12 +85,50 @@ namespace jobSchedule.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "lifeguardID,Lifeguard_Name,DOB,gender,city_id")] Lifeguard lifeguard)
         {
-            if (ModelState.IsValid)
+            var lisguard = db.Schedules.Where(x => x.lifeguardID.Equals(lifeguard.lifeguardID)).ToList();
+            bool a = false;
+            foreach(var item in lisguard)
+            {
+                if (item.dutyDate > System.DateTime.Now)
+                {
+                    a = true;
+                }
+            }
+            
+            if (a == false)
             {
                 db.Entry(lifeguard).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            else
+            {
+                ViewBag.Error = "You are already assigned to a task and until you complete that task you are allowed to change your location";
+            }
+            //var listS = db.Schedules.Where(x => x.city_id.Equals(lifeguard.city_id)).ToList();
+            //var listLG = db.Lifeguards.Where(x => x.city_id.Equals(lifeguard.city_id)).ToList();
+            //if (listS != null)
+            //{
+            //    if (listLG == null)
+            //    {
+            //        if (ModelState.IsValid)
+            //        {
+            //            db.Entry(lifeguard).State = EntityState.Modified;
+            //            db.SaveChanges();
+            //            return RedirectToAction("Index");
+            //        }
+            //    }
+            //    else
+            //    {
+            //        ViewBag.Error = "Status not changed";
+            //    }
+            //}
+            //else
+            //{
+            //    ViewBag.Error = "Status not Changed";
+            //}
+            
+            
             ViewBag.city_id = new SelectList(db.Cities, "city_id", "city_name", lifeguard.city_id);
             return View(lifeguard);
         }

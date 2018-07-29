@@ -168,6 +168,34 @@
     <Compile Include="Migrations\201805121714515_t1.Designer.cs">
       <DependentUpon>201805121714515_t1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805130542484_t2.cs" />
+    <Compile Include="Migrations\201805130542484_t2.Designer.cs">
+      <DependentUpon>201805130542484_t2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805131024405_t3.cs" />
+    <Compile Include="Migrations\201805131024405_t3.Designer.cs">
+      <DependentUpon>201805131024405_t3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805131130176_t4.cs" />
+    <Compile Include="Migrations\201805131130176_t4.Designer.cs">
+      <DependentUpon>201805131130176_t4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805131137367_t5.cs" />
+    <Compile Include="Migrations\201805131137367_t5.Designer.cs">
+      <DependentUpon>201805131137367_t5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805131313271_t6.cs" />
+    <Compile Include="Migrations\201805131313271_t6.Designer.cs">
+      <DependentUpon>201805131313271_t6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805131326525_t7.cs" />
+    <Compile Include="Migrations\201805131326525_t7.Designer.cs">
+      <DependentUpon>201805131326525_t7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805131410416_t8.cs" />
+    <Compile Include="Migrations\201805131410416_t8.Designer.cs">
+      <DependentUpon>201805131410416_t8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Beach.cs" />
     <Compile Include="Models\City.cs" />
@@ -259,6 +287,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805121714515_t1.resx">
       <DependentUpon>201805121714515_t1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805130542484_t2.resx">
+      <DependentUpon>201805130542484_t2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805131024405_t3.resx">
+      <DependentUpon>201805131024405_t3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805131130176_t4.resx">
+      <DependentUpon>201805131130176_t4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805131137367_t5.resx">
+      <DependentUpon>201805131137367_t5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805131313271_t6.resx">
+      <DependentUpon>201805131313271_t6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805131326525_t7.resx">
+      <DependentUpon>201805131326525_t7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805131410416_t8.resx">
+      <DependentUpon>201805131410416_t8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

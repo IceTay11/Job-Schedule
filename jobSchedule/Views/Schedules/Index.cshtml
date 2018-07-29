@@ -12,22 +12,32 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.lifeguard.Lifeguard_Name)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.beach.beachName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.city.city_name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dutyStart)
+            @Html.DisplayNameFor(model => model.dutyDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dutyEnd)
+            @Html.DisplayNameFor(model => model.timeStart)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timeEnd)
+        </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.lifeguard.Lifeguard_Name)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.beach.beachName)
         </td>
@@ -35,15 +45,18 @@
             @Html.DisplayFor(modelItem => item.city.city_name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.dutyStart)
+            @Html.DisplayFor(modelItem => item.dutyDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.dutyEnd)
+            @Html.DisplayFor(modelItem => item.timeStart)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.scheduleID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.scheduleID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.scheduleID })
+            @Html.DisplayFor(modelItem => item.timeEnd)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.scheduleID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.scheduleID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.scheduleID })
         </td>
     </tr>
 }

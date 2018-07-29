@@ -12,17 +12,26 @@ namespace jobSchedule.Models
         [Key]
         public int scheduleID { get; set; }
 
-        [Required]
-        [DataType(DataType.DateTime)]
-        public DateTime dutyStart { get; set; }
+        public int lifeguardID { get; set; }
+        [ForeignKey("lifeguardID")]
+        public Lifeguard lifeguard { get; set; }
 
         [Required]
-        [DataType(DataType.DateTime)]
-        public DateTime dutyEnd { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime dutyDate { get; set; }
 
+        [Required]
+        [DataType(DataType.Time)] 
+        public DateTime timeStart { get; set; }
+
+        [Required]
+        [DataType(DataType.Time)] 
+        public DateTime timeEnd { get; set; }
+
+        [Required]
         public int city_id { get; set; }
-        [ForeignKey("city_id")]
-        public City city { get; set; }
+
+        public virtual City city { get; set; }
 
         public int beachID { get; set; }
         [ForeignKey("beachID")]
